@@ -1,0 +1,70 @@
+// COLOR VARIABLES
+$color-white: rgb(250, 250, 250);
+$color-white-off: #ddd;
+$color-grey-dark: #444;
+$color-grey-light: #999;
+$color-orange: rgb(241, 79, 20);
+
+// RESPONSIVE BREAKPOINTS
+$bp-largest: 75em; //1200px
+$bp-large: 62.5em; //1000px
+$bp-medium: 50em; //800px
+$bp-small: 37.5em; //600px
+$bp-smallest: 31.25em; //500px
+
+$inner-border: 1.5px solid rgba(grey, 0.1);
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  overflow: hidden;
+
+  @media only screen and (max-width: $bp-largest) {
+    font-size: 50%;
+  }
+}
+
+body {
+  background-image: linear-gradient(
+    to right bottom,
+    #d1d3d5,
+    #cfced5,
+    #d4c6d0,
+    #dabfc1,
+    #d7bcae
+  );
+  font-family: "Quicksand";
+  color: #555;
+  font-weight: 300;
+  line-height: 1.6;
+}
+* > li {
+  list-style: none;
+}
+* > a {
+  text-decoration: none;
+  color: inherit;
+}
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.app {
+  border: 1px solid rgba($color-grey-dark, 0.2);
+  border-radius: 5px;
+  min-width: 120rem;
+  height: 80vh;
+  display: flex;
+  box-shadow: 0 5px 60px rgba(0, 0, 0, 0.1), 0 3px 10px rgba(0, 0, 0, 0.23);
+}

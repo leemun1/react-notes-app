@@ -5,11 +5,29 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+  &__main {
+    background-color: $color-white;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    img {
+      width: 15rem;
+      height: 15rem;
+    }
+  }
 
   &__form {
-    width: 100%;
+    flex: 1;
+    border: 1px solid red;
     height: 100%;
     padding: 2rem;
   }

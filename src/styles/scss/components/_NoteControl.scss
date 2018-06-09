@@ -1,0 +1,10 @@
+.note__control {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: min-content 1fr;
+}
+
+.notes__list__box {
+  display: flex;
+  flex-direction: column;
+}

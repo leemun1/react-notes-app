@@ -1,8 +1,10 @@
+@import "./base/settings";
+@import "./base/base";
+@import "./components/Notes";
+@import "./components/sidebar";
+@import "./components/note";
+@import "./components/NoteControl";
+@import "./components/Search";
+
 @import url("https://fonts.googleapis.com/css?family=Bad+Script");
 @import url("https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700");
-
-@import "./settings";
-@import "./base";
-@import "./sidebar";
-@import "./note";
-@import "./notes";

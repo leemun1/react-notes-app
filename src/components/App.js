@@ -1,23 +1,16 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Sidebar from "./Sidebar";
-import Notes from "./Notes";
-import { NoteMain, NoteAdd, NoteView } from "./Note";
-
-import { notes } from "../seed";
+import NoteControl from "./NoteControl/NoteControl";
+import { NoteMain, NoteAdd } from "./NoteView/Note";
+import NoteView from "./NoteView/NoteView";
 
 class App extends Component {
-  state = {
-    notes: notes
-  };
-
   render() {
     return (
       <Router>
         <div className="app">
-          <Sidebar toggleNew={this.toggleNew} />
-          <Notes notes={this.state.notes} />
+          <NoteControl />
           <Switch>
             <Route exact path="/" component={NoteMain} />
             <Route path="/new" component={NoteAdd} />

@@ -8,18 +8,11 @@ const NoteMain = () => (
   </div>
 );
 
-const NoteView = props => {
-  return (
-    <div className="note">
-      <h1>View Note</h1>
-    </div>
-  );
-};
-
 const NoteAdd = () => (
   <div className="note">
     <h1 className="note__heading">New Note</h1>
     <NoteForm />
   </div>
 );
-export { NoteMain, NoteAdd, NoteView };
+
+export { NoteMain, NoteAdd };

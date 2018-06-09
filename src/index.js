@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 
 import "./styles/css/index.css";
 import App from "./components/App";
-
 import store from "./store";
 
 import registerServiceWorker from "./registerServiceWorker";
@@ -15,9 +14,8 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
-registerServiceWorker();
 
-console.log(store.getState());
+registerServiceWorker();
 
 if (module.hot) {
   module.hot.accept();

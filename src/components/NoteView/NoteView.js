@@ -17,7 +17,7 @@ class NoteView extends React.Component {
     title: "",
     createdAt: "",
     content: "",
-    isTrash: ""
+    isArchived: ""
   };
 
   onArchive = id => {
@@ -48,12 +48,17 @@ class NoteView extends React.Component {
   }
 
   render() {
-    const { title, createdAt, content, isTrash } = this.state;
+    const { title, createdAt, content, isArchived } = this.state;
     const { id } = this.props.match.params;
     return (
       <div className="note__view">
         <h1 className="note__view--title">{title}</h1>
         <div className="note__view--meta">
+          {isArchived && (
+            <div className="note__view--meta--status">
+              <span>Archived</span>
+            </div>
+          )}
           <span className="note__view--meta--date">
             {moment(createdAt).format("MMM Do, YYYY")} {" - "}
           </span>
@@ -71,7 +76,7 @@ class NoteView extends React.Component {
           {content}
         </Scrollbars>
 
-        {!isTrash ? (
+        {!isArchived ? (
           <div className="note__view__control">
             <button
               className="note__view__control--archive"

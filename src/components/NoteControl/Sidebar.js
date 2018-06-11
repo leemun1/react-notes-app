@@ -34,8 +34,8 @@ const Sidebar = ({ filter, setFilter }) => {
         </li>
         <li
           className="sidebar__nav__item"
-          style={{ background: filter === "trash" ? "#565656" : "#444" }}
-          onClick={() => setFilter("trash")}
+          style={{ background: filter === "archived" ? "#565656" : "#444" }}
+          onClick={() => setFilter("archived")}
         >
           <Icon name="archive" />
           <span>Archive</span>

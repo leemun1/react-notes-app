@@ -49,14 +49,13 @@ class Notes extends React.Component {
     const { notes } = this.props;
 
     this.setState({
-      notes: notes.filter(note => !note.isTrash),
+      notes: notes.filter(note => !note.isArchived),
       searchSubmitted: false,
       searchTerm: ""
     });
   };
 
   componentDidMount() {
-    console.log("initiating getnotes!");
     this.props.onGetNotes();
   }
 
@@ -74,7 +73,7 @@ class Notes extends React.Component {
       let id = newNote.id;
       let oldNote = notes.find(note => note.id === id);
       if (oldNote) {
-        if (newNote.isTrash !== oldNote.isTrash) {
+        if (newNote.isArchived !== oldNote.isArchived) {
           onGetNotes();
         }
       }
@@ -82,14 +81,14 @@ class Notes extends React.Component {
 
     // handle change of filter
     if (nextProps.filter === "all") {
-      const allNotes = notes.filter(note => !note.isTrash);
+      const allNotes = notes.filter(note => !note.isArchived);
       this.setState({
         notes: allNotes
       });
-    } else if (nextProps.filter === "trash") {
-      const trashedNotes = notes.filter(note => note.isTrash);
+    } else if (nextProps.filter === "archived") {
+      const archivedNotes = notes.filter(note => note.isArchived);
       this.setState({
-        notes: trashedNotes
+        notes: archivedNotes
       });
     }
   }

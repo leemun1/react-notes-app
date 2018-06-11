@@ -10,5 +10,5 @@ const rootReducer = combineReducers({
   notes: noteReducer
 });
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+const store = createStore(rootReducer, {}, applyMiddleware(thunk, logger));
 export default store;

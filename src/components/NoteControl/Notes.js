@@ -2,8 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Scrollbars } from "react-custom-scrollbars";
 
-import { db } from "../../firebase";
-import { getNotes } from "../../actions/note";
+import { startGetNotes } from "../../actions/note";
 
 import Icon from "../Misc/Icon";
 import NotesItem from "./NotesItem";
@@ -57,12 +56,17 @@ class Notes extends React.Component {
   };
 
   componentDidMount() {
-    const { notes } = this.props;
-    const allNotes = notes.filter(note => !note.isTrash);
-    this.setState({
-      notes: allNotes
-    });
+    console.log("initiating getnotes!");
+    this.props.onGetNotes();
   }
+
+  // componentDidMount() {
+  //   const { notes } = this.props;
+  //   const allNotes = notes.filter(note => !note.isTrash);
+  //   this.setState({
+  //     notes: allNotes
+  //   });
+  // }
 
   // componentDidMount() {
   //   const { onGetNotes } = this.props;
@@ -80,7 +84,7 @@ class Notes extends React.Component {
 
     // force re-render if new note item added
     if (nextProps.notes.length !== notes.length) {
-      onGetNotes(nextProps.notes);
+      onGetNotes();
     }
 
     // handle change of filter
@@ -162,7 +166,7 @@ const mapStateToProps = ({ notes, filter }) => ({
 });
 
 const mapStateToDispatch = dispatch => ({
-  onGetNotes: notes => dispatch(getNotes(notes))
+  onGetNotes: () => dispatch(startGetNotes())
 });
 
 export default connect(

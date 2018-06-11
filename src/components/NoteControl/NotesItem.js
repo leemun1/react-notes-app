@@ -27,12 +27,12 @@ class NotesItem extends React.Component {
             <Icon name="flag" />
           </span>
         </div>
-        <div className="notes__item__preview">
-          <Link to={`/view/${note.id}`}>
+        <Link to={`/view/${note.id}`} className="notes__item__preview">
+          <div>
             <h1>{_.truncate(note.title, { length: 30 })}</h1>
             <p>{_.truncate(note.content, { length: 65 })}</p>
-          </Link>
-        </div>
+          </div>
+        </Link>
       </div>
     );
   }

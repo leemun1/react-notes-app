@@ -2,10 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import moment from "moment";
-import uuid from "uuid";
 
 import { db } from "../../firebase";
-import { addNote } from "../../actions/note";
+import { addNote, startGetNotes } from "../../actions/note";
 
 const INITIAL_STATE = {
   title: "",
@@ -45,7 +44,7 @@ class NoteForm extends React.Component {
   };
 
   ///// save to db on submit /////
-  /* 
+
   onSubmit = event => {
     event.preventDefault();
 
@@ -57,28 +56,29 @@ class NoteForm extends React.Component {
       this.setState({ ...INITIAL_STATE });
       this.props.history.push("/");
     });
+
+    this.props.onGetNotes();
   };
-  */
 
   ///// save to store on submit //////
-  onSubmit = event => {
-    event.preventDefault();
+  // onSubmit = event => {
+  //   event.preventDefault();
 
-    let newNote = {
-      id: uuid(),
-      title: this.state.title,
-      content: this.state.content,
-      createdAt: moment().valueOf(),
-      isTrash: false
-    };
+  //   let newNote = {
+  //     id: uuid(),
+  //     title: this.state.title,
+  //     content: this.state.content,
+  //     createdAt: moment().valueOf(),
+  //     isTrash: false
+  //   };
 
-    this.setState({
-      ...INITIAL_STATE
-    });
+  //   this.setState({
+  //     ...INITIAL_STATE
+  //   });
 
-    this.props.onAddNote(newNote);
-    this.props.history.push("/");
-  };
+  //   this.props.onAddNote(newNote);
+  //   this.props.history.push("/");
+  // };
 
   render() {
     return (
@@ -114,7 +114,8 @@ class NoteForm extends React.Component {
 }
 
 const mapStateToDispatch = dispatch => ({
-  onAddNote: note => dispatch(addNote(note))
+  onAddNote: note => dispatch(addNote(note)),
+  onGetNotes: () => dispatch(startGetNotes())
 });
 
 export default withRouter(

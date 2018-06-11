@@ -1,16 +1,6 @@
 import { ADD_NOTE, GET_NOTES } from "../constants";
 
-import { notes } from "../seed";
-
-const INITIAL_STATE = {
-  notes: []
-};
-
-const applyGetNotes = (state, action) => {
-  return [...state, ...action.notes];
-};
-
-const noteReducer = (state = notes, action) => {
+const noteReducer = (state = [], action) => {
   switch (action.type) {
     case ADD_NOTE:
       return [...state, action.note];

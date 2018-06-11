@@ -1,7 +1,7 @@
 export const ADD_NOTE = "ADD_NOTE";
+export const DELETE_NOTE = "DELETE_NOTE";
+export const EDIT_NOTE = "EDIT_NOTE";
 export const GET_NOTES = "GET_NOTES";
-export const GET_NOTE_BY_ID = "GET_NOTE_BY_ID";
-export const WATCH_NOTES = "WATCH_NOTES";
 export const SET_FILTER = "SET_FILTER";
 
 // moment.js

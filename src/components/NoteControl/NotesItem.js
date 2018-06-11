@@ -23,7 +23,10 @@ class NotesItem extends React.Component {
           <span className="notes__item__meta--timesince">
             {moment(note.createdAt).fromNow()}
           </span>
-          <span className="notes__item__meta--flagged">
+          <span
+            className="notes__item__meta--flagged"
+            onClick={() => alert("feature not yet available.")}
+          >
             <Icon name="flag" />
           </span>
         </div>

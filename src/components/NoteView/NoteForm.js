@@ -43,8 +43,7 @@ class NoteForm extends React.Component {
     }
   };
 
-  ///// save to db on submit /////
-
+  // save to db on submit
   onSubmit = event => {
     event.preventDefault();
 
@@ -59,26 +58,6 @@ class NoteForm extends React.Component {
 
     this.props.onGetNotes();
   };
-
-  ///// save to store on submit //////
-  // onSubmit = event => {
-  //   event.preventDefault();
-
-  //   let newNote = {
-  //     id: uuid(),
-  //     title: this.state.title,
-  //     content: this.state.content,
-  //     createdAt: moment().valueOf(),
-  //     isTrash: false
-  //   };
-
-  //   this.setState({
-  //     ...INITIAL_STATE
-  //   });
-
-  //   this.props.onAddNote(newNote);
-  //   this.props.history.push("/");
-  // };
 
   render() {
     return (

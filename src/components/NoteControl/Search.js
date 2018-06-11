@@ -55,14 +55,19 @@ class Search extends React.Component {
 
         {searchSubmitted ? (
           <button className="search__button" onClick={() => this.onSearchReset}>
-            <Icon name="search" />
+            <span className="icon">
+              <i className="fas fa-search" />
+            </span>
           </button>
         ) : (
           <button
             className="search__button"
             onClick={() => this.onSearchSubmit}
           >
-            <Icon name="rotate-ccw" />
+            {/* <Icon name="rotate-ccw" /> */}
+            <span className="icon">
+              <i className="fas fa-undo" />
+            </span>
           </button>
         )}
       </div>

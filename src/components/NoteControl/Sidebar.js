@@ -26,9 +26,7 @@ const Sidebar = ({ filter, setFilter }) => {
       <ul className="sidebar__nav">
         <li
           className="sidebar__nav__item"
-          style={{
-            background: filter === "all" ? "#565656" : "#444"
-          }}
+          style={{ background: filter === "all" ? "#565656" : "#444" }}
           onClick={() => setFilter("all")}
         >
           <Icon name="file-text" />
@@ -36,9 +34,7 @@ const Sidebar = ({ filter, setFilter }) => {
         </li>
         <li
           className="sidebar__nav__item"
-          style={{
-            background: filter === "trash" ? "#565656" : "#444"
-          }}
+          style={{ background: filter === "trash" ? "#565656" : "#444" }}
           onClick={() => setFilter("trash")}
         >
           <Icon name="trash-2" />

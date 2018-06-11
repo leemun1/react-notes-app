@@ -1,8 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import moment from "moment";
+import { Scrollbars } from "react-custom-scrollbars";
 
-import { startGetNotes } from "../../actions/note";
+import {
+  startGetNotes,
+  startEditNote,
+  startDeleteNote
+} from "../../actions/note";
 
 class NoteView extends React.Component {
   state = {
@@ -10,6 +16,11 @@ class NoteView extends React.Component {
     createdAt: "",
     content: "",
     isTrash: ""
+  };
+
+  onDelete = id => {
+    this.props.onDeleteNote(id);
+    this.props.history.push("/");
   };
 
   componentDidMount() {
@@ -26,15 +37,48 @@ class NoteView extends React.Component {
 
   render() {
     const { title, createdAt, content, isTrash } = this.state;
+    const { id } = this.props.match.params;
     return (
       <div className="note__view">
         <h1 className="note__view--title">{title}</h1>
-        <p className="note__view--date">
-          {moment(createdAt).format("MMM Do, YYYY")}
-        </p>
-        <p className="note__view--time">{moment(createdAt).format("hh:mmA")}</p>
-        <p className="note__view--content">{content}</p>
-        <p className="note__view--content">{isTrash}</p>
+        <div className="note__view--meta">
+          <span className="note__view--meta--date">
+            {moment(createdAt).format("MMM Do, YYYY")} {" - "}
+          </span>
+          <span className="note__view--meta--time">
+            {moment(createdAt).format("hh:mmA")}
+          </span>
+        </div>
+        <Scrollbars
+          className="note__view--content"
+          autoHide={true}
+          autoHideTimeout={1000}
+          autoHideDuration={400}
+          hideTracksWhenNotNeeded={true}
+        >
+          {content}
+        </Scrollbars>
+
+        {!isTrash ? (
+          <div className="note__view__control">
+            <button
+              className="note__view__control--edit"
+              onClick={() => alert("feature not yet available.")}
+            >
+              Edit
+            </button>
+            <button
+              className="note__view__control--delete"
+              onClick={() => this.onDelete(id)}
+            >
+              Delete
+            </button>
+          </div>
+        ) : (
+          <div className="note__view__control">
+            <button className="note__view__control--restore">Restore</button>
+          </div>
+        )}
       </div>
     );
   }
@@ -45,10 +89,13 @@ const mapStateToProps = ({ notes }, props) => ({
 });
 
 const mapStateToDispatch = dispatch => ({
-  onGetNotes: () => dispatch(startGetNotes())
+  onGetNotes: () => dispatch(startGetNotes()),
+  onDeleteNote: id => dispatch(startDeleteNote(id))
 });
 
-export default connect(
-  mapStateToProps,
-  mapStateToDispatch
-)(NoteView);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapStateToDispatch
+  )(NoteView)
+);

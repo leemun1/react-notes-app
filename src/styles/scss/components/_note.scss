@@ -32,28 +32,84 @@
 .note__view {
   @extend .note;
   height: 100%;
-  padding: 2rem;
+  padding: 3rem;
 
   &--title {
     font-size: 4rem;
+    line-height: 1.1;
+    padding-bottom: 2.5rem;
   }
 
-  &--date {
+  &--meta {
     text-align: right;
-    font-size: 2rem;
-    font-weight: 500;
-  }
+    border-bottom: $inner-border;
 
-  &--time {
-    @extend .note__view--date;
-    font-size: 1.8rem;
-    font-weight: 400;
+    &--date {
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    &--time {
+      font-size: 1.8rem;
+      font-weight: 400;
+    }
   }
 
   &--content {
-    padding-top: 1rem;
+    flex: 1;
+    margin-top: 1rem;
     font-size: 1.8rem;
     font-weight: 400;
+    overflow: scroll;
+  }
+
+  &__control {
+    justify-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+
+    &--edit,
+    &--delete,
+    &--restore {
+      @extend .button;
+      height: 4rem;
+      font-size: 1.8rem;
+      font-weight: 2rem;
+      background-color: transparent;
+    }
+
+    &--edit {
+      color: $color-orange;
+      margin-right: 1rem;
+
+      &:hover {
+        background: $color-orange;
+        color: $color-white;
+      }
+    }
+
+    &--delete {
+      color: $color-red;
+      border-color: $color-red;
+
+      &:hover {
+        border-color: $color-red;
+        background: $color-red;
+        color: $color-white;
+      }
+    }
+
+    &--restore {
+      color: $color-blue;
+      border-color: $color-blue;
+      width: 10rem;
+
+      &:hover {
+        border-color: $color-blue;
+        background: $color-blue;
+        color: $color-white;
+      }
+    }
   }
 }
 
@@ -93,31 +149,6 @@
   }
 
   button {
-    align-self: flex-end;
-    background: $color-orange;
-    border: 1.5px solid $color-orange;
-    color: $color-white;
-    border-radius: 3px;
-    cursor: pointer;
-    outline: none;
-    height: 5rem;
-    width: 8rem;
-    font-family: "Quicksand";
-    font-size: 2rem;
-    font-weight: 500;
-    padding: 0.4rem 1rem;
-    margin-top: 2rem;
-    transition: all 0.3s ease;
-
-    &:hover {
-      border-color: darken($color-orange, 5%);
-      background: darken($color-orange, 5%);
-    }
-
-    &:disabled {
-      color: darken($color-orange, 5%);
-      border-color: darken($color-orange, 5%);
-      background: transparent;
-    }
+    @extend .button;
   }
 }

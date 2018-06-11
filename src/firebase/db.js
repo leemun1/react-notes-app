@@ -10,4 +10,4 @@ export const doCreateNote = (title, content, createdAt, isTrash) =>
 
 export const onceGetNotes = () => db.ref("notes").once("value");
 
-export const watchNotes = () => db.ref("notes").on("value");
+export const deleteNote = id => db.ref(`notes/${id}`).remove();

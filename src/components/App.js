@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import NoteControl from "./NoteControl/NoteControl";
-import { NoteMain, NoteAdd } from "./NoteView/Note";
+import NoteMain from "./NoteView/NoteMain";
+import NoteAdd from "./NoteView/NoteAdd";
 import NoteView from "./NoteView/NoteView";
 
 class App extends Component {

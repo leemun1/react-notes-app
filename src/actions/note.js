@@ -2,8 +2,8 @@ import {
   ADD_NOTE,
   EDIT_NOTE,
   DELETE_NOTE,
-  ARCHIVE_NOTE,
-  RESTORE_NOTE,
+  FLAG_NOTE_TOGGLE,
+  ARCHIVE_NOTE_TOGGLE,
   GET_NOTES
 } from "../constants";
 import { db } from "../firebase";
@@ -36,30 +36,34 @@ export const startGetNotes = () => {
   };
 };
 
-// Archive Note
-export const archiveNote = id => ({
-  type: ARCHIVE_NOTE,
+// Flag Note Toggle
+export const flagNoteToggle = id => ({
+  type: FLAG_NOTE_TOGGLE,
   id
 });
 
-export const startArchiveNote = id => {
+export const startFlagNoteToggle = id => {
   return dispatch => {
-    return db.archiveNote(id).then(() => {
-      dispatch(archiveNote(id));
+    return db.onceGetNoteById(id).then(snapshot => {
+      const { isFlagged } = snapshot.val();
+      db.flagNote(id, isFlagged);
+      dispatch(flagNoteToggle(id));
     });
   };
 };
 
-// Restore Note
-export const restoreNote = id => ({
-  type: RESTORE_NOTE,
+// Archive Note Toggle
+export const archiveNoteToggle = id => ({
+  type: ARCHIVE_NOTE_TOGGLE,
   id
 });
 
-export const startRestoreNote = id => {
+export const startArchiveNoteToggle = id => {
   return dispatch => {
-    return db.restoreNote(id).then(() => {
-      dispatch(restoreNote(id));
+    return db.onceGetNoteById(id).then(snapshot => {
+      const { isArchived } = snapshot.val();
+      db.archiveNote(id, isArchived);
+      dispatch(archiveNoteToggle(id));
     });
   };
 };

@@ -7,8 +7,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 import {
   startGetNotes,
   startEditNote,
-  startArchiveNote,
-  startRestoreNote,
+  startArchiveNoteToggle,
   startDeleteNote
 } from "../../actions/note";
 
@@ -20,13 +19,8 @@ class NoteView extends React.Component {
     isArchived: ""
   };
 
-  onArchive = id => {
-    this.props.onArchiveNote(id);
-    this.props.history.push("/");
-  };
-
-  onRestore = id => {
-    this.props.onRestoreNote(id);
+  onArchiveToggle = id => {
+    this.props.onArchiveNoteToggle(id);
     this.props.history.push("/");
   };
 
@@ -80,7 +74,7 @@ class NoteView extends React.Component {
           <div className="note__view__control">
             <button
               className="note__view__control--archive"
-              onClick={() => this.onArchive(id)}
+              onClick={() => this.onArchiveToggle(id)}
             >
               Archive
             </button>
@@ -95,7 +89,7 @@ class NoteView extends React.Component {
           <div className="note__view__control">
             <button
               className="note__view__control--restore"
-              onClick={() => this.onRestore(id)}
+              onClick={() => this.onArchiveToggle(id)}
             >
               Restore
             </button>
@@ -118,8 +112,7 @@ const mapStateToProps = ({ notes }, props) => ({
 
 const mapStateToDispatch = dispatch => ({
   onGetNotes: () => dispatch(startGetNotes()),
-  onArchiveNote: id => dispatch(startArchiveNote(id)),
-  onRestoreNote: id => dispatch(startRestoreNote(id)),
+  onArchiveNoteToggle: id => dispatch(startArchiveNoteToggle(id)),
   onDeleteNote: id => dispatch(startDeleteNote(id))
 });
 

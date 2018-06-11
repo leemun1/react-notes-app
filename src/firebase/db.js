@@ -1,18 +1,30 @@
 import { db } from "./firebase";
 
-export const doCreateNote = (title, content, createdAt, isArchived) =>
+export const doCreateNote = (
+  title,
+  content,
+  createdAt,
+  isArchived,
+  isFlagged
+) =>
   db.ref(`notes`).push({
     title,
     content,
     createdAt,
-    isArchived
+    isArchived,
+    isFlagged
   });
 
 export const onceGetNotes = () => db.ref("notes").once("value");
 
-export const archiveNote = id =>
-  db.ref(`notes/${id}`).update({ isArchived: true });
-export const restoreNote = id =>
-  db.ref(`notes/${id}`).update({ isArchived: false });
+export const onceGetNoteById = id => db.ref(`notes/${id}`).once("value");
+
+export const flagNote = (id, isFlagged) => {
+  db.ref(`notes/${id}`).update({ isFlagged: !isFlagged });
+};
+
+export const archiveNote = (id, isArchived) => {
+  db.ref(`notes/${id}`).update({ isArchived: !isArchived });
+};
 
 export const deleteNote = id => db.ref(`notes/${id}`).remove();

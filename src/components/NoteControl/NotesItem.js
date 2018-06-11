@@ -12,7 +12,7 @@ moment.updateLocale("en", LOCALE_CONFIG);
 class NotesItem extends React.Component {
   render() {
     const styles = { borderLeft: "4px solid rgb(241, 79, 20)" };
-    const { note, current, markCurrent } = this.props;
+    const { note, current, markCurrent, onFlag } = this.props;
     return (
       <div className="notes__item" onFocus={() => markCurrent(note.id)}>
         <div
@@ -24,9 +24,12 @@ class NotesItem extends React.Component {
           </span>
           <span
             className="notes__item__meta--flagged"
-            onClick={() => alert("feature not yet available.")}
+            onClick={() => onFlag(note.id)}
           >
-            <Icon name="flag" />
+            <Icon
+              name="flag"
+              style={note.isFlagged && { fill: "rgb(241, 79, 20)" }}
+            />
           </span>
         </div>
         <Link to={`/view/${note.id}`} className="notes__item__preview">

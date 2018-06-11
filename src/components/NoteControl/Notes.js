@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Scrollbars } from "react-custom-scrollbars";
 
-import { startGetNotes } from "../../actions/note";
+import { startGetNotes, startFlagNoteToggle } from "../../actions/note";
 
 import Icon from "../Misc/Icon";
 import NotesItem from "./NotesItem";
@@ -55,6 +55,11 @@ class Notes extends React.Component {
     });
   };
 
+  onFlag = id => {
+    this.props.onFlag(id);
+    this.props.onGetNotes();
+  };
+
   componentDidMount() {
     this.props.onGetNotes();
   }
@@ -74,6 +79,10 @@ class Notes extends React.Component {
       let oldNote = notes.find(note => note.id === id);
       if (oldNote) {
         if (newNote.isArchived !== oldNote.isArchived) {
+          onGetNotes();
+        }
+
+        if (newNote.isFlagged !== oldNote.isFlagged) {
           onGetNotes();
         }
       }
@@ -142,6 +151,7 @@ class Notes extends React.Component {
                   key={note.id}
                   note={note}
                   markCurrent={this.markCurrent}
+                  onFlag={this.onFlag}
                   current={current}
                 />
               ))}
@@ -159,6 +169,7 @@ const mapStateToProps = ({ notes, filter }) => ({
 });
 
 const mapStateToDispatch = dispatch => ({
+  onFlag: id => dispatch(startFlagNoteToggle(id)),
   onGetNotes: () => dispatch(startGetNotes())
 });
 

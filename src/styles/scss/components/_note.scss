@@ -18,14 +18,25 @@
   justify-content: center;
   align-items: center;
 
+  img {
+    margin: 3rem 0;
+    width: 20rem;
+    height: 20rem;
+  }
+
   h1 {
     font-size: 3rem;
+  }
+
+  p {
+    font-size: 2rem;
+    font-weight: 500;
     margin-bottom: 2rem;
   }
 
-  img {
+  button {
+    @extend .button;
     width: 15rem;
-    height: 15rem;
   }
 }
 

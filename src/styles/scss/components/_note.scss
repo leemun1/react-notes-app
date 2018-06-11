@@ -80,8 +80,9 @@
     justify-content: flex-end;
 
     &--edit,
-    &--delete,
-    &--restore {
+    &--archive,
+    &--restore,
+    &--delete {
       @extend .button;
       height: 4rem;
       font-size: 1.8rem;
@@ -91,10 +92,23 @@
 
     &--edit {
       color: $color-orange;
-      margin-right: 1rem;
 
       &:hover {
         background: $color-orange;
+        color: $color-white;
+      }
+    }
+
+    &--archive,
+    &--restore {
+      color: $color-bluegrey;
+      border-color: $color-bluegrey;
+      width: 9rem;
+      margin-right: 1rem;
+
+      &:hover {
+        border-color: $color-bluegrey;
+        background: $color-bluegrey;
         color: $color-white;
       }
     }
@@ -106,18 +120,6 @@
       &:hover {
         border-color: $color-red;
         background: $color-red;
-        color: $color-white;
-      }
-    }
-
-    &--restore {
-      color: $color-blue;
-      border-color: $color-blue;
-      width: 10rem;
-
-      &:hover {
-        border-color: $color-blue;
-        background: $color-blue;
         color: $color-white;
       }
     }

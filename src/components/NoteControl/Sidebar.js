@@ -37,8 +37,8 @@ const Sidebar = ({ filter, setFilter }) => {
           style={{ background: filter === "trash" ? "#565656" : "#444" }}
           onClick={() => setFilter("trash")}
         >
-          <Icon name="trash-2" />
-          <span>Trash</span>
+          <Icon name="archive" />
+          <span>Archive</span>
         </li>
       </ul>
     </div>

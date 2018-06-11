@@ -12,7 +12,6 @@ moment.updateLocale("en", LOCALE_CONFIG);
 class NotesItem extends React.Component {
   render() {
     const styles = { borderLeft: "4px solid rgb(241, 79, 20)" };
-
     const { note, current, markCurrent } = this.props;
     return (
       <div className="notes__item" onFocus={() => markCurrent(note.id)}>

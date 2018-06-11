@@ -5,4 +5,5 @@ const Icon = ({ name }) => (
     <use xlinkHref={`img/icons/sprite.svg#icon-${name}`} />
   </svg>
 );
+
 export default Icon;

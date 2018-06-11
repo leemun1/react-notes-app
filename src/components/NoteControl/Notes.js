@@ -97,6 +97,7 @@ class Notes extends React.Component {
   render() {
     const { notes, current, searchTerm, searchSubmitted } = this.state;
     const disabled = searchTerm === "";
+
     return (
       <div className="notes__list__box">
         <div className="search">

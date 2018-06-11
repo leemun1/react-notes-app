@@ -7,8 +7,9 @@ import { Scrollbars } from "react-custom-scrollbars";
 import {
   startGetNotes,
   startEditNote,
-  startDeleteNote,
-  startRestoreNote
+  startArchiveNote,
+  startRestoreNote,
+  startDeleteNote
 } from "../../actions/note";
 
 class NoteView extends React.Component {
@@ -19,13 +20,18 @@ class NoteView extends React.Component {
     isTrash: ""
   };
 
-  onDelete = id => {
-    this.props.onDeleteNote(id);
+  onArchive = id => {
+    this.props.onArchiveNote(id);
     this.props.history.push("/");
   };
 
   onRestore = id => {
     this.props.onRestoreNote(id);
+    this.props.history.push("/");
+  };
+
+  onDelete = id => {
+    this.props.onDeleteNote(id);
     this.props.history.push("/");
   };
 
@@ -68,16 +74,16 @@ class NoteView extends React.Component {
         {!isTrash ? (
           <div className="note__view__control">
             <button
+              className="note__view__control--archive"
+              onClick={() => this.onArchive(id)}
+            >
+              Archive
+            </button>
+            <button
               className="note__view__control--edit"
               onClick={() => alert("feature not yet available.")}
             >
               Edit
-            </button>
-            <button
-              className="note__view__control--delete"
-              onClick={() => this.onDelete(id)}
-            >
-              Delete
             </button>
           </div>
         ) : (
@@ -87,6 +93,12 @@ class NoteView extends React.Component {
               onClick={() => this.onRestore(id)}
             >
               Restore
+            </button>
+            <button
+              className="note__view__control--delete"
+              onClick={() => this.onDelete(id)}
+            >
+              Delete
             </button>
           </div>
         )}
@@ -101,8 +113,9 @@ const mapStateToProps = ({ notes }, props) => ({
 
 const mapStateToDispatch = dispatch => ({
   onGetNotes: () => dispatch(startGetNotes()),
-  onDeleteNote: id => dispatch(startDeleteNote(id)),
-  onRestoreNote: id => dispatch(startRestoreNote(id))
+  onArchiveNote: id => dispatch(startArchiveNote(id)),
+  onRestoreNote: id => dispatch(startRestoreNote(id)),
+  onDeleteNote: id => dispatch(startDeleteNote(id))
 });
 
 export default withRouter(

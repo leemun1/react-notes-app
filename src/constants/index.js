@@ -1,7 +1,8 @@
 export const ADD_NOTE = "ADD_NOTE";
-export const DELETE_NOTE = "DELETE_NOTE";
 export const EDIT_NOTE = "EDIT_NOTE";
+export const ARCHIVE_NOTE = "ARCHIVE_NOTE";
 export const RESTORE_NOTE = "RESTORE_NOTE";
+export const DELETE_NOTE = "DELETE_NOTE";
 export const GET_NOTES = "GET_NOTES";
 export const SET_FILTER = "SET_FILTER";
 

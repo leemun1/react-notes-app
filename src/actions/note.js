@@ -2,6 +2,7 @@ import {
   ADD_NOTE,
   EDIT_NOTE,
   DELETE_NOTE,
+  ARCHIVE_NOTE,
   RESTORE_NOTE,
   GET_NOTES
 } from "../constants";
@@ -35,16 +36,16 @@ export const startGetNotes = () => {
   };
 };
 
-// Delete Note
-export const deleteNote = id => ({
-  type: DELETE_NOTE,
+// Archive Note
+export const archiveNote = id => ({
+  type: ARCHIVE_NOTE,
   id
 });
 
-export const startDeleteNote = id => {
+export const startArchiveNote = id => {
   return dispatch => {
-    return db.deleteNote(id).then(() => {
-      dispatch(deleteNote(id));
+    return db.archiveNote(id).then(() => {
+      dispatch(archiveNote(id));
     });
   };
 };
@@ -59,6 +60,20 @@ export const startRestoreNote = id => {
   return dispatch => {
     return db.restoreNote(id).then(() => {
       dispatch(restoreNote(id));
+    });
+  };
+};
+
+// Delete Note
+export const deleteNote = id => ({
+  type: DELETE_NOTE,
+  id
+});
+
+export const startDeleteNote = id => {
+  return dispatch => {
+    return db.deleteNote(id).then(() => {
+      dispatch(deleteNote(id));
     });
   };
 };

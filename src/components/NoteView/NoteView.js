@@ -16,7 +16,8 @@ class NoteView extends React.Component {
     title: "",
     createdAt: "",
     content: "",
-    isArchived: ""
+    isArchived: "",
+    isFlagged: ""
   };
 
   onArchiveToggle = id => {
@@ -42,23 +43,28 @@ class NoteView extends React.Component {
   }
 
   render() {
-    const { title, createdAt, content, isArchived } = this.state;
+    const { title, createdAt, content, isArchived, isFlagged } = this.state;
     const { id } = this.props.match.params;
     return (
       <div className="note__view">
         <h1 className="note__view--title">{title}</h1>
         <div className="note__view--meta">
+          {isFlagged && (
+            <div className="note__view--meta--flagged">
+              <span>Flagged</span>
+            </div>
+          )}
           {isArchived && (
-            <div className="note__view--meta--status">
+            <div className="note__view--meta--archived">
               <span>Archived</span>
             </div>
           )}
-          <span className="note__view--meta--date">
+          <div className="note__view--meta--date">
             {moment(createdAt).format("MMM Do, YYYY")} {" - "}
-          </span>
-          <span className="note__view--meta--time">
+          </div>
+          <div className="note__view--meta--time">
             {moment(createdAt).format("hh:mmA")}
-          </span>
+          </div>
         </div>
         <Scrollbars
           className="note__view--content"

@@ -60,32 +60,25 @@ class Notes extends React.Component {
     this.props.onGetNotes();
   }
 
-  // componentDidMount() {
-  //   const { notes } = this.props;
-  //   const allNotes = notes.filter(note => !note.isTrash);
-  //   this.setState({
-  //     notes: allNotes
-  //   });
-  // }
-
-  // componentDidMount() {
-  //   const { onGetNotes } = this.props;
-  //   db.onceGetNotes().then(snapshot => {
-  //     const data = snapshot.val();
-  //     const notes = Object.keys(data).map(key => {
-  //       return { id: key, ...data[key] };
-  //     });
-  //     onGetNotes(notes);
-  //   });
-  // }
-
   componentWillReceiveProps(nextProps) {
     const { notes, onGetNotes } = this.props;
+    const newNotes = nextProps.notes;
 
-    // force re-render if new note item added
-    if (nextProps.notes.length !== notes.length) {
+    // re-render if new note item added
+    if (newNotes.length !== notes.length) {
       onGetNotes();
     }
+
+    // re-render if note status changed
+    newNotes.forEach(newNote => {
+      let id = newNote.id;
+      let oldNote = notes.find(note => note.id === id);
+      if (oldNote) {
+        if (newNote.isTrash !== oldNote.isTrash) {
+          onGetNotes();
+        }
+      }
+    });
 
     // handle change of filter
     if (nextProps.filter === "all") {

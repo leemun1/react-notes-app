@@ -7,7 +7,8 @@ import { Scrollbars } from "react-custom-scrollbars";
 import {
   startGetNotes,
   startEditNote,
-  startDeleteNote
+  startDeleteNote,
+  startRestoreNote
 } from "../../actions/note";
 
 class NoteView extends React.Component {
@@ -20,6 +21,11 @@ class NoteView extends React.Component {
 
   onDelete = id => {
     this.props.onDeleteNote(id);
+    this.props.history.push("/");
+  };
+
+  onRestore = id => {
+    this.props.onRestoreNote(id);
     this.props.history.push("/");
   };
 
@@ -76,7 +82,12 @@ class NoteView extends React.Component {
           </div>
         ) : (
           <div className="note__view__control">
-            <button className="note__view__control--restore">Restore</button>
+            <button
+              className="note__view__control--restore"
+              onClick={() => this.onRestore(id)}
+            >
+              Restore
+            </button>
           </div>
         )}
       </div>
@@ -90,7 +101,8 @@ const mapStateToProps = ({ notes }, props) => ({
 
 const mapStateToDispatch = dispatch => ({
   onGetNotes: () => dispatch(startGetNotes()),
-  onDeleteNote: id => dispatch(startDeleteNote(id))
+  onDeleteNote: id => dispatch(startDeleteNote(id)),
+  onRestoreNote: id => dispatch(startRestoreNote(id))
 });
 
 export default withRouter(

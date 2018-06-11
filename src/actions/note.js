@@ -1,4 +1,10 @@
-import { ADD_NOTE, EDIT_NOTE, DELETE_NOTE, GET_NOTES } from "../constants";
+import {
+  ADD_NOTE,
+  EDIT_NOTE,
+  DELETE_NOTE,
+  RESTORE_NOTE,
+  GET_NOTES
+} from "../constants";
 import { db } from "../firebase";
 
 // Add New Note
@@ -39,6 +45,20 @@ export const startDeleteNote = id => {
   return dispatch => {
     return db.deleteNote(id).then(() => {
       dispatch(deleteNote(id));
+    });
+  };
+};
+
+// Restore Note
+export const restoreNote = id => ({
+  type: RESTORE_NOTE,
+  id
+});
+
+export const startRestoreNote = id => {
+  return dispatch => {
+    return db.restoreNote(id).then(() => {
+      dispatch(restoreNote(id));
     });
   };
 };

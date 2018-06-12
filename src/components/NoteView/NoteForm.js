@@ -50,11 +50,14 @@ class NoteForm extends React.Component {
     const { title, content } = this.state;
     const createdAt = moment().valueOf();
     const isArchived = false;
+    const isFlagged = false;
 
-    db.doCreateNote(title, content, createdAt, isArchived).then(() => {
-      this.setState({ ...INITIAL_STATE });
-      this.props.history.push("/");
-    });
+    db.doCreateNote(title, content, createdAt, isArchived, isFlagged).then(
+      () => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push("/");
+      }
+    );
 
     this.props.onGetNotes();
   };

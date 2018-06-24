@@ -11,6 +11,8 @@ This project was created as an attempt to clone the [Bear App](http://www.bear-a
 ## Made with
 
 - React
+- Redux
+- Firebase
 - Sass
 
 ## Setup
